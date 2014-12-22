@@ -1,6 +1,5 @@
 #include <cstdlib>
 #include <iostream>
-#include <math.h>
 
 using namespace std;
 
@@ -35,8 +34,6 @@ int main(){
 		cout<<"Invalid matrix size!"<<endl;
 		return 1;
 	}
-
-	cout<<pow(2, 31)<<endl;
     
     int a[m1][n1];
     int b[m2][n2];
