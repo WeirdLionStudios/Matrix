@@ -13,10 +13,6 @@ using namespace std;
 * -Fixed wrong results
 **/
 
-//Print the matrix under a header, passing the header, the matrix and its
-//dimensions
-void print_matrix(const char* header, int** matrix, int width, int height);
-
 //Max size of the elements
 #define size 10
 
