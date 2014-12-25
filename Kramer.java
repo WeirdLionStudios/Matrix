@@ -38,17 +38,13 @@ public class Kramer {
 			ans[i]=(double)(rand.nextInt()%INIT_MAX);
 		}
 		
-		System.out.println("Coefficient matrix");
-		for(int i=0;i<dim;i++){
-			for(int j=0;j<dim;j++)
-				System.out.print(coeff[i][j]+" ");
-			System.out.print("\n");
-		}
+		//Print matrices
+		printMatrix("Coefficient matrix", coeff);
 		System.out.println("\nAnswer matrix");
 		for(int i=0;i<dim;i++)
 			System.out.println(ans[i]);
 		
-		//Kramer
+		//Kramer method
 		det=determinant(coeff, dim);
 		
 		for(int i=0;i<dim;i++){
@@ -76,12 +72,13 @@ public class Kramer {
 		if(d==2)
 			return a[0][0]*a[1][1]-a[1][0]*a[0][1];
 		for(int i=0;i<d;i++)
-			det+=a[0][i]*determinant(getComp(a, i, 0), d-1)*Math.pow(-1,i);
+			det+=a[0][i]*determinant(getSub(a, i, 0), d-1)*Math.pow(-1,i);
 			
 		return det;
 	}
 	
-	static double[][] getComp(double[][] a, int col, int row){
+	//Get submatrix by eliminating row and column
+	static double[][] getSub(double[][] a, int col, int row){
 		int d=a.length;
 		double[][] n=new double[d-1][d-1];
 		
@@ -99,6 +96,7 @@ public class Kramer {
 		return n;
 	}
 	
+	//Copy the contents of a matrix into another
 	static double[][] setMatrix(double[][] a){
 		double[][] b=new double[a.length][a[0].length];
 		for(int i=0;i<a.length;i++)
@@ -107,6 +105,7 @@ public class Kramer {
 		return b;
 	}
 	
+	//Print the contents of a matrix, with a header to make things nice
 	static void printMatrix(String header, double[][] matrix){
 		System.out.println(header);
 		for(int i=0;i<matrix.length;i++){
