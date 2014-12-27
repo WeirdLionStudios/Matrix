@@ -34,5 +34,6 @@ inverse: $(OBJS_INVERSE)
 	g++ -c $< -o $@ $(CPP_FLAGS)
 
 clean:
-	rm *.o */*.o *~ */*~
+	rm *.o */*.o *~ */*~ */*/*~
+
 
