@@ -30,6 +30,7 @@ double** get_submatrix(double** matrix, int dim, int row, int col){
 				sub[r][c++]=matrix[i][j];
 		r++;
 	}
+	print_matrix("Sub", sub, dim);
 	return sub;
 }
 
