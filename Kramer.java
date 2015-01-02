@@ -63,7 +63,7 @@ public class Kramer {
 	
 	//Get determinant using laplacian expansion
 	static double determinant(double[][] a, int d){
-		int det=0;
+		double det=0;
 		if(d<2){
 			System.err.println("Inconsistent matrix size");
 			System.exit(1);
@@ -91,7 +91,7 @@ public class Kramer {
 				if(j!=col)
 					n[r][c++]=a[i][j];
 			}
-			if(i!=row) r++;
+			r++;
 		}
 		return n;
 	}

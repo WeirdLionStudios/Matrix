@@ -30,5 +30,5 @@ int main(){
 
 	//Random values and display
 	init_rand_matrix(a, dim, MAX);
-	print_matrix((char*)"A", a, dim);
+	print_matrix("A", a, dim);
 }

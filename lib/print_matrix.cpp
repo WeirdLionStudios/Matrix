@@ -1,6 +1,6 @@
 #include <matrix_common.h>
 
-void print_matrix(char* header, double** matrix, int dim){
+void print_matrix(string header, double** matrix, int dim){
 	cout<<header<<endl;
 	int i, j;
 	for(i=0;i<dim;i++){

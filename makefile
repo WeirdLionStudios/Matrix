@@ -2,8 +2,7 @@ MATRIX_LIB_DIR=lib
 
 include $(MATRIX_LIB_DIR)/make.config
 
-GAUSS_EXEC=gauss_determinant
-INVERSE_EXEC=inverse
+EXEC=gauss inverse
 MATRIX_LIB_INCLUDE=$(MATRIX_LIB_DIR)/include/
 MATRIX_LIB_NAME=matrix
 MATRIX_LIB=libmatrix.a
@@ -23,14 +22,14 @@ inverse.o		\
 
 .PHONY: all clean clean-all gauss inverse libmatrix
 
-all:gauss inverse
+all:$(EXEC)
 	$(info *****Compiled all c++ projects*****)
 
 gauss: $(OBJS_GAUSS) libmatrix
-	g++ -o $(GAUSS_EXEC) $(OBJS_GAUSS) $(LINK_FLAGS)
+	g++ -o $@ $(OBJS_GAUSS) $(LINK_FLAGS)
 
 inverse: $(OBJS_INVERSE) libmatrix
-	g++ -o $(INVERSE_EXEC) $(OBJS_INVERSE) $(LINK_FLAGS)
+	g++ -o $@ $(OBJS_INVERSE) $(LINK_FLAGS)
 
 libmatrix: $(MATRIX_LIB_OBJS)
 	$(info *****creating libmatrix*****)
@@ -43,6 +42,6 @@ clean:
 	rm -f *.o */*.o *~ */*~ */*/*~ *.a */*.a
 
 clean-all: clean
-	rm -f $(GAUSS_EXEC) $(INVERSE_EXEC)
+	rm -f $(EXEC)
 
 
