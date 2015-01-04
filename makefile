@@ -31,8 +31,14 @@ gauss: $(OBJS_GAUSS) $(MATRIX_LIB)
 inverse: $(OBJS_INVERSE) $(MATRIX_LIB)
 	g++ -o $@ $(OBJS_INVERSE) $(LINK_FLAGS)
 
+multiplication: matrix_multiplication.o
+	g++ -o $@ $<
+	
+libmatrix: $(MATRIX_LIB)
+	$(info *****libmatrix compilation complete*****)
+
 %.a: $(MATRIX_LIB_OBJS)
-	$(info *****creating libmatrix*****)
+	$(info *****creating libmatrix archive*****)
 	ar rcs $(MATRIX_LIB) $(MATRIX_LIB_OBJS)
 
 %.o: %.cpp

@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 
@@ -11,6 +12,8 @@ using namespace std;
 * -Better output
 * -Variable operand size
 * -Fixed wrong results
+* 04/01/2014 Venio
+* -Fixed include error
 **/
 
 //Max size of the elements

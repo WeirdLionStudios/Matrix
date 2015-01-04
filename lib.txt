@@ -1,0 +1,193 @@
+List of libmatrix functions.
+The functions do not control the arguments for invalid values, so the
+program that uses the lib has to do that.
+
+-----------------------------------------------------------
+| void init_rand_vector(double* vector, int dim, int max) |
+-----------------------------------------------------------
+Populate a vector of dimension dim with numbers from 0(inclusive) to
+max(exclusive)
+Invalid values:
+	unallocated vector
+	dim<2
+	max<1
+Example:
+	//Populate a vector of dimension 5 with the numbers 0-9
+	int dim=5, max=10;
+	double* vector=new double[dim];
+	init_rand_vector(vector, dim, max);
+
+-----------------------------------------------------------
+| void init_rand_matrix(double** matrix, int dim, int max)|
+-----------------------------------------------------------
+Populate a square matrix of dimension dim with numbers from 0(inclusive)
+to max(exclusive)
+Invalid values:
+	unallocated matrix
+	dim<2
+	max<1
+Example:
+	//Populate a 5*5 matrix with the numbers 0-9
+	int dim=5, max=10;
+	double** matrix=new double*[dim];
+	for(int i=0;i<dim;i++)
+		matrix[i]=new double[dim];
+	init_rand_matrix(matrix, dim, max);
+
+-------------------------------------------------------------
+| void print_vector(string header, double* vector, ind dim) |
+-------------------------------------------------------------
+Print a vector of dimension dim with a header in this form:
+header
+vector_1
+vector_2
+.
+.
+vector_dim
+
+Invalid values:
+	unallocated vector
+	dim<2
+Example:
+	//Print a random vector of dimension 5
+	int dim=5, max=10;
+	double* vector=new double[dim];
+	init_rand_vector(vector, dim, max);
+	print_vector("Example vector", vector, dim);
+
+--------------------------------------------------------------
+| void print_matrix(string header, double** matrix, int dim) |
+--------------------------------------------------------------
+Print a square matrix of dimension dim with a header in this form:
+header
+matrix_1_1		matrix_1_2	 ..		matrix_1_dim
+matrix_2_1		matrix_2_2	 ..		matrix_2_dim
+	.				.			.		.
+	.				.				.	.
+matrix_dim_1	matrix_dim_2  ..	matrix_dim_dim
+
+Invalid values:
+	unallocated matrix
+	dim<2
+Example:
+	//Print a random 5*5 matrix
+	int dim=5, max=10;
+	double** matrix=new double*[dim];
+	for(int i=0;i<dim;i++)
+		matrix[i]=new double[dim];
+	init_rand_matrix(matrix, dim, max);
+	print_matrix("Example matrix", matrix, dim);
+
+---------------------------------------------------------------
+| void swap_col(double** matrix, int dim, int col1, int col2) |
+---------------------------------------------------------------
+Swaps two columns of a square matrix with dimension dim.
+The two columns are indicated by their index (the indexes start from 0).
+The order in wich the indexes are entered is irrelevant.
+Invalid values:
+	unallocated matrix
+	dim<2
+	col1, col2 <0
+	col1, col2 >=dim
+Example:
+	//Swap the first two columns of a random 5*5 matrix
+	int dim=5, max=10;
+	double** matrix=new double*[dim];
+	for(int i=0;i<dim;i++)
+		matrix[i]=new double[dim];
+	init_rand_matrix(matrix, dim, max);
+	swap_col(matrix, dim, 0, 1);
+
+---------------------------------------------------------------
+| void swap_row(double** matrix, int dim, int row1, int row2) |
+---------------------------------------------------------------
+Swaps two rows of a square matrix with dimension dim.
+The two rows are indicated by their index (the indexes start from 0).
+The order in wich the indexes are entered is irrelevant.
+Invalid values:
+	unallocated matrix
+	dim<2
+	row1, row2 <0
+	row1, row2 >=dim
+Example:
+	//Swap the first two rows of a random 5*5 matrix
+	int dim=5, max=10;
+	double** matrix=new double*[dim];
+	for(int i=0;i<dim;i++)
+		matrix[i]=new double[dim];
+	init_rand_matrix(matrix, dim, max);
+	swap_row(matrix, dim, 0, 1);
+
+--------------------------------------------------------
+| void copy_vector(double* src, double* dest, int dim) |
+--------------------------------------------------------
+Copies the content of a vector of dimension dim into another.
+Invalid values:
+	unallocated src or dest
+	dim<2
+Example:
+	//Copy the contents of a vector of dimension 5 into another
+	int dim=5, max=10;
+	double* a=new double[dim];
+	double* b=new double[dim];
+	init_rand_vector(a, dim, max);
+	copy_vector(a, b, dim);
+
+--------------------------------------------------------
+| void copy_matrix(double** src, double** dest, int dim) |
+--------------------------------------------------------
+Copies the content of a square matrix of dimension dim into another.
+Invalid values:
+	unallocated src or dest
+	dim<2
+Example:
+	//Copy the contents of a 5*5 matrix into another
+	int dim=5, max=10;
+	double* a=new double[dim];
+	for(int i=0;i<dim;i++)
+		a[i]=new double[dim];
+	double* b=new double[dim];
+	for(int i=0;i<dim;i++)
+		b[i]=new double[dim];
+	init_rand_matrix(a, dim, max);
+	copy_matrix(a, b, dim);
+
+------------------------------------------------------------
+| double get_laplace_determinant(double** matrix, int dim) |
+------------------------------------------------------------
+Get the determinant of a square matrix of dimension dim using
+recursively Laplacian expansion.
+Invalid values:
+	unallocated matrix
+	dim<2
+Example:
+	//Get the determinant of a 5*5 matrix
+	double determinant;
+	int dim=5, max=10;
+	double** matrix=new double*[dim];
+	for(int i=0;i<dim;i++)
+		matrix[i]=new double[dim];
+	init_rand_matrix(matrix, dim, max);
+	determinant=get_laplace_determinant(matrix, dim);
+
+----------------------------------------------------------------------
+| double** get_submatrix(double** matrix, int dim, int row, int col) |
+----------------------------------------------------------------------
+Get a submatrix of a matrix by removing a row and a column.
+The row and the column are indicated with their indexes (indexes start with 0).
+Invalid values:
+	unallocated matrix
+	dim<2
+	row, col<0
+	row, col>=dim
+Example:
+	//Get the submatrix of a 5*5 matrix by removing the central row and column
+	int dim=5, max=10;
+	double** matrix=new double*[dim];
+	double** sub=new double*[dim-1];
+	for(int i=0;i<dim;i++)
+		matrix[i]=new double[dim];
+	for(int i=0;i<dim-1;i++
+		sub[i]=new double[dim-1];
+	init_rand_matrix(matrix, dim, max);
+	sub=get_submatrix(matrix, dim, 2, 2);

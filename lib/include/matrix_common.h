@@ -20,8 +20,8 @@
 
 using namespace std;
 
-void init_rand_matrix(double** ptr, int dim, int max);
-void init_rand_vector(double* ptr, int dim, int max);
+void init_rand_matrix(double** matrix, int dim, int max);
+void init_rand_vector(double* vector, int dim, int max);
 
 void print_vector(string header, double* vector, int dim);
 void print_matrix(string header, double** matrix, int dim);
