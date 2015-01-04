@@ -13,6 +13,8 @@ Build Instructions
 
 If libmatrix is not already compiled, it is created when a program is built.
 
+make all: compile all the programs
+
 make gauss: compile the gauss determinant program
 
 make inverse: compile the inverse matrix program
