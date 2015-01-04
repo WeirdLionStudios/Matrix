@@ -2,7 +2,7 @@ MATRIX_LIB_DIR=lib
 
 include $(MATRIX_LIB_DIR)/make.config
 
-EXEC=gauss inverse
+EXEC=gauss inverse multiplication
 MATRIX_LIB_INCLUDE=$(MATRIX_LIB_DIR)/include/
 MATRIX_LIB_NAME=matrix
 MATRIX_LIB=$(MATRIX_LIB_DIR)/libmatrix.a
