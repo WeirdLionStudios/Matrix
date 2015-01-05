@@ -20,14 +20,15 @@
 
 using namespace std;
 
-void init_rand_matrix(double** matrix, int dim, int max);
-void init_rand_vector(double* vector, int dim, int max);
+void init_rand_matrix(double** ptr, int dim, int max);
+void init_rand_vector(double* ptr, int dim, int max);
 
 void print_vector(string header, double* vector, int dim);
 void print_matrix(string header, double** matrix, int dim);
 
 double get_laplace_determinant(double** matrix, int dim);
 double** get_submatrix(double** matrix, int dim, int row, int col);
+double** transpose_matrix(double** matrix, int dim);
 
 void swap_col(double** matrix, int dim, int col1, int col2);
 void swap_row(double** matrix, int dim, int row1, int row2);

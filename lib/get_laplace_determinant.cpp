@@ -8,7 +8,7 @@ double get_laplace_determinant(double** a, int dim){
 	int i;
 	for(i=0;i<dim;i++)
 		det+=a[0][i]*get_laplace_determinant(
-				get_submatrix(a, dim-1, 0, i),
+				get_submatrix(a, dim, 0, i),
 				dim-1)*pow(-1, i);
 	return det;
 }
@@ -17,20 +17,19 @@ double get_laplace_determinant(double** a, int dim){
 double** get_submatrix(double** matrix, int dim, int row, int col){
 	int i, j;
 	double** sub;
-	sub=new double*[dim];
-	for(int i=0;i<dim;i++)
-		sub[i]=new double[dim];
+	sub=new double*[dim-1];
+	for(int i=0;i<dim-1;i++)
+		sub[i]=new double[dim-1];
 	int c, r=0;
-	for(i=0;i<dim+1;i++){
+	for(i=0;i<dim;i++){
 		c=0;
 		if(i==row)
 			continue;
-		for(j=0;j<dim+1;j++)
+		for(j=0;j<dim;j++)
 			if(j!=col)
 				sub[r][c++]=matrix[i][j];
 		r++;
 	}
-	print_matrix("Sub", sub, dim);
 	return sub;
 }
 
