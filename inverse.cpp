@@ -20,7 +20,7 @@ int main(){
 	cin>>dim;
 
 	if(dim<1){
-		cout<<"ERROR! The dimension of the matrix must be >=1!"<<endl;
+		cout<<"ERROR: The dimension of the matrix must be >=1!"<<endl;
 		return 1;
 	}
 	
@@ -51,10 +51,13 @@ int main(){
 		submatrix[k]=new double[dim-1];
 
 	init_rand_matrix(a, dim, MAX);
-	print_matrix("A", a, dim);
+	print_matrix("Given matrix: ", a, dim);
 
 	double detA=get_laplace_determinant(a, dim);
-
+	if(a==0){
+		cout<<"ERROR: determinant is equal to 0. Given matrix is not invertible."<<endl;
+		return 0;	
+	}
 	for(int i=0;i<dim;i++){
 		for(int j=0;j<dim;j++){
 
@@ -71,5 +74,5 @@ int main(){
 			inv[i][j]=transposed[i][j]/detA;
 		}
 	}
-	print_matrix("Inv", inv, dim);
+	print_matrix("Inverted matrix: ", inv, dim);
 }
