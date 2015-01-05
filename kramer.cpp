@@ -54,8 +54,8 @@ int main(){
 	det=get_laplace_determinant(coeff, dim);
 
 	for(int i=0;i<dim;i++){
+	copy_matrix(coeff, b_coeff, dim);
 		for(int j=0;j<dim;j++){
-			copy_matrix(coeff, b_coeff, dim);
 			b_coeff[j][i]=ans[j];
 		}
 		b_det=get_laplace_determinant(b_coeff, dim);
@@ -66,4 +66,3 @@ int main(){
 	print_vector("Result: ", res, dim);
 
 }
-
