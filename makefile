@@ -2,7 +2,7 @@ MATRIX_LIB_DIR=lib
 
 include $(MATRIX_LIB_DIR)/make.config
 
-EXEC=gauss inverse multiplication
+EXEC=gauss inverse kramer multiplication
 MATRIX_LIB_INCLUDE=$(MATRIX_LIB_DIR)/include/
 MATRIX_LIB_NAME=matrix
 MATRIX_LIB=$(MATRIX_LIB_DIR)/libmatrix.a
@@ -20,7 +20,11 @@ OBJS_INVERSE=		\
 $(OBJS_COMMON)		\
 inverse.o		\
 
-.PHONY: all clean clean-exec clean-all gauss inverse
+OBJS_KRAMER=		\
+$(OBJS_COMMON)		\
+kramer.o		\
+
+.PHONY: all clean clean-exec clean-all gauss inverse kramer
 
 all:$(EXEC)
 	$(info *****Compiled all c++ projects*****)
@@ -30,6 +34,9 @@ gauss: $(OBJS_GAUSS) $(MATRIX_LIB)
 
 inverse: $(OBJS_INVERSE) $(MATRIX_LIB)
 	g++ -o $@ $(OBJS_INVERSE) $(LINK_FLAGS)
+
+kramer: $(OBJS_KRAMER) $(MATRIX_LIB)
+	g++ -o $@ $(OBJS_KRAMER) $(LINK_FLAGS)
 
 multiplication: matrix_multiplication.o
 	g++ -o $@ $<
