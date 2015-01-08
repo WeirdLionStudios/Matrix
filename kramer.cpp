@@ -46,12 +46,14 @@ int main(){
 	res=new double[dim];
 
 	init_rand_matrix(coeff, dim, MAX);
-	print_matrix("Given matrix: ", coeff, dim);
+	print_matrix("Given matrix", coeff, dim);
 
-	for(int i=0;i<dim;i++)
-		ans[i]=rand()%MAX;
+	init_rand_vector(ans, dim, MAX);
+	print_vector("Answer matrix", ans, dim);
 
 	det=get_laplace_determinant(coeff, dim);
+	
+	cout<<"Equation variables values"<<endl;
 
 	for(int i=0;i<dim;i++){
 	copy_matrix(coeff, b_coeff, dim);
@@ -60,9 +62,6 @@ int main(){
 		}
 		b_det=get_laplace_determinant(b_coeff, dim);
 		res[i]=b_det/det;
-		cout<<"Calculation: \n"<<b_det<<" / "<<det<<" = "<<res[i]<<"\n\n";
+		cout<<"x_"<<i<<": "<<res[i]<<endl;
 	}
-
-	print_vector("Result: ", res, dim);
-
 }
