@@ -24,6 +24,10 @@ OBJS_KRAMER=		\
 $(OBJS_COMMON)		\
 kramer.o		\
 
+OBJS_MULTIPLICATION=	\
+$(OBJS_COMMON)		\
+matrix_multiplication.o	\
+
 .PHONY: all clean clean-exec clean-all gauss inverse kramer
 
 all:$(EXEC)
@@ -38,8 +42,8 @@ inverse: $(OBJS_INVERSE) $(MATRIX_LIB)
 kramer: $(OBJS_KRAMER) $(MATRIX_LIB)
 	g++ -o $@ $(OBJS_KRAMER) $(LINK_FLAGS)
 
-multiplication: matrix_multiplication.o
-	g++ -o $@ $<
+multiplication: $(OBJS_MULTIPLICATION) $(MATRIX_LIB)
+	g++ -o $@ $(OBJS_MULTIPLICATION) $(LINK_FLAGS)
 	
 libmatrix: $(MATRIX_LIB)
 	$(info *****libmatrix compilation complete*****)

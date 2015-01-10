@@ -2,6 +2,8 @@
 #include <iostream>
 #include <time.h>
 
+#include <matrix_common.h>
+
 using namespace std;
 
 /**
@@ -14,79 +16,54 @@ using namespace std;
 * -Fixed wrong results
 * 04/01/2014 Venio
 * -Fixed include error
+* 10/01/2015 Venio
+* -Rewrite everything!
 **/
 
 //Max size of the elements
-#define size 10
+#define MAX 10
 
-unsigned int m1, n1, m2, n2;
+unsigned int ax, ay, bx, by;
 
 int main(){
-	
 	cout<<"Enter the dimensions of A separated by a space"<<endl;
-	cin>>m1>>n1;
+	cin>>ax>>ay;
 
 	cout<<"Enter the dimensions of B separated by a space"<<endl;
-	cin>>m2>>n2;
+	cin>>bx>>by;
 
-	if(n1!=m2){
+	if(ay!=bx){
 		cout<<"Invalid matrix size!"<<endl;
 		return 1;
 	}
     
-    int a[m1][n1];
-    int b[m2][n2];
-    int c[m1][n2];
-    
-    srand(time(NULL));
-    
-    for(int m=0;m<m1;m++){
-        for(int n=0;n<n1;n++){
-            a[m][n]=rand()%size;
-        }
-    }
-    
-    for(int n=0;n<m2;n++){
-        for(int p=0;p<n2;p++){
-            b[n][p]=rand()%size;
-        }
-    }
-    
-    for(int i=0;i<m1;i++){
-        for(int j=0;j<n2;j++){
-			c[i][j]=0;
-            for(int index=0;index<n1;index++){
-                c[i][j]+=a[i][index]*b[index][j];
-            }
-        }
-    }
-
-	cout<<"A"<<endl;
-	for(int i=0;i<m1;i++){
-		cout<<"\t";
-        	for(int j=0;j<n1;j++)
-        	        cout<<a[i][j]<<"\t";
-       		cout<<endl;
-	}
-	cout<<endl;
-
-	cout<<"B"<<endl;
-	for(int i=0;i<m2;i++){
-		cout<<"\t";
-        	for(int j=0;j<n2;j++)
-        	        cout<<b[i][j]<<"\t";
-       		cout<<endl;
-	}
-	cout<<endl;
+	double** a=new double*[ay];
+	for(int i=0;i<ay;i++)
+		a[i]=new double[ax];
 	
-	cout<<"C=A*B"<<endl;
-	for(int i=0;i<m1;i++){
-		cout<<"\t";
-        	for(int j=0;j<n2;j++)
-        	        cout<<c[i][j]<<"\t";
-       		cout<<endl;
-	}
+	double** b=new double*[by];
+	for(int i=0;i<by;i++)
+		b[i]=new double[bx];
+	
+	double** c=new double*[ay];
+	for(int i=0;i<ay;i++)
+		c[i]=new double[bx];
+	
+	init_rand_matrix(a, ax, ay, MAX);
+	init_rand_matrix(b, bx, by, MAX);
     
-    system("PAUSE");
+    	for(int i=0;i<by;i++){
+        	for(int j=0;j<ax;j++){
+			c[i][j]=0;
+            		for(int index=0;index<bx;index++){
+                		c[i][j]+=a[index][i]*b[j][index];
+            		}
+        	}
+    	}
+
+	print_matrix("A",	a, ax, ay);
+	print_matrix("B",	b, bx, by);
+	print_matrix("C=A*B",	c, ax, by);
+    
     return 0;    
 }

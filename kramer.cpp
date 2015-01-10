@@ -4,6 +4,9 @@
  * @author Venio
  * 
  * translation from Java code by Trek
+ * 11/01/2015 Venio
+ * -Update library calls
+ * -Better output
  */
 
 #include <iostream>
@@ -45,24 +48,24 @@ int main(){
 	ans=new double[dim];
 	res=new double[dim];
 
-	init_rand_matrix(coeff, dim, MAX);
-	print_matrix("Given matrix: ", coeff, dim);
+	init_rand_matrix(coeff, dim, dim, MAX);
+	print_matrix("Coefficient matrix: ", coeff, dim, dim);
 
-	for(int i=0;i<dim;i++)
-		ans[i]=rand()%MAX;
+	init_rand_vector(ans, dim, MAX);
 
 	det=get_laplace_determinant(coeff, dim);
 
+	print_vector("Answer vector", ans, dim);
+
+	cout<<"Values of variables"<<endl;
+
 	for(int i=0;i<dim;i++){
-	copy_matrix(coeff, b_coeff, dim);
+	copy_matrix(coeff, b_coeff, dim, dim);
 		for(int j=0;j<dim;j++){
 			b_coeff[j][i]=ans[j];
 		}
 		b_det=get_laplace_determinant(b_coeff, dim);
 		res[i]=b_det/det;
-		cout<<"Calculation: \n"<<b_det<<" / "<<det<<" = "<<res[i]<<"\n\n";
+		cout<<"x_"<<i<<": "<<res[i]<<endl;
 	}
-
-	print_vector("Result: ", res, dim);
-
 }

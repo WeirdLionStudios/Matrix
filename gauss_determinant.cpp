@@ -43,8 +43,8 @@ int main(){
 		a[i]=new double[dim];
 
 	//Random values and display
-	init_rand_matrix(a, dim, MAX);
-	print_matrix("A", a, dim);
+	init_rand_matrix(a, dim, dim, MAX);
+	print_matrix("A", a, dim, dim);
 
 	//Iterate on submatrixes by ignoring the first row and column each time
 	for(int i=0;i<dim-1;i++){
@@ -61,7 +61,7 @@ int main(){
 				a[j][k]-=a[i][k]*m/a[i][i];
 			}
 		}
-		print_matrix("Next step", a, dim);
+		print_matrix("Next step", a, dim, dim);
 	}
 
 	if(zero) det=0;
@@ -73,7 +73,7 @@ int main(){
 		det*=pow(-1, c_swap+r_swap);
 	}
 	//Show output
-	print_matrix("Final matrix", a, dim);
+	print_matrix("Final matrix", a, dim, dim);
 	cout<<"Gauss determinant:\t"<<det<<endl;
 }
 
@@ -89,18 +89,18 @@ void get_nonzero(int row, int col){
 				//If statements necessary for not swapping a row
 				//or a column with itself
 				if(j!=row){
-					swap_row(a, dim, j, row);
+					swap_row(a, dim, dim, j, row);
 					r_swap++;
 					cout<<"Swapping rows "<<row
 						<<" and "<<j<<endl;
-					print_matrix("", a, dim);
+					print_matrix("", a, dim, dim);
 				}
 				if(i!=col){
-					swap_col(a, dim, i, col);
+					swap_col(a, dim, dim, i, col);
 					c_swap++;
 					cout<<"Swapping cols "<<col
 						<<" and "<<i<<endl;
-					print_matrix("", a, dim);
+					print_matrix("", a, dim, dim);
 				}
 				break;
 			}
