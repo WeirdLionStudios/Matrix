@@ -19,7 +19,9 @@ make gauss: compile the gauss determinant program
 
 make inverse: compile the inverse matrix program
 
-make multiplication: compile the matrix multiplication program program
+make kramer: compile kramer program
+
+make multiplication: compile the matrix multiplication program
 
 make libmatrix: compile libmatrix from source
 

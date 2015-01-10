@@ -48,12 +48,22 @@ int main(){
 	ans=new double[dim];
 	res=new double[dim];
 
+<<<<<<< HEAD
 	init_rand_matrix(coeff, dim, dim, MAX);
 	print_matrix("Coefficient matrix: ", coeff, dim, dim);
 
 	init_rand_vector(ans, dim, MAX);
+=======
+	init_rand_matrix(coeff, dim, MAX);
+	print_matrix("Given matrix", coeff, dim);
+
+	init_rand_vector(ans, dim, MAX);
+	print_vector("Answer matrix", ans, dim);
+>>>>>>> 8158fed14884848c0e9649e92005a95201bd8f20
 
 	det=get_laplace_determinant(coeff, dim);
+	
+	cout<<"Equation variables values"<<endl;
 
 	print_vector("Answer vector", ans, dim);
 
